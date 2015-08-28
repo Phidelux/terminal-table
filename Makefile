@@ -10,7 +10,7 @@ OBJ := $(patsubst $(SRC_FOLDER)/%.cpp, $(BIN_FOLDER)/%.o, $(SRC))
 
 all: bin termtab
 
-crysec: $(OBJ)
+termtab: $(OBJ)
 	$(CC) $(CFLAGS) -o $(BIN_FOLDER)/termtab $(OBJ) $(LDFLAGS)
 
 $(BIN_FOLDER)/%.o: $(SRC_FOLDER)/%.cpp
