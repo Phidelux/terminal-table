@@ -7,7 +7,7 @@ namespace bornageek {
         LEFT, RIGHT, CENTER
       };
 
-      class Style {
+      class Styleable {
         private:
           std::string mBorderX = "-";
           std::string mBorderY = "|";
@@ -16,10 +16,12 @@ namespace bornageek {
           std::uint16_t mPaddingLeft = 1;
           std::uint16_t mPaddingRight = 1;
 
+          Alignment mAlign = Alignment::LEFT;
+
           std::uint16_t mWidth = 0;
 
         public:
-          Style();
+          Styleable();
 
           const std::string& borderX() const;
           void borderX(std::string const &borderStyle);
@@ -35,6 +37,9 @@ namespace bornageek {
 
           const std::uint16_t paddingRight() const;
           void paddingRight(std::uint16_t const &padding);
+
+          const Alignment alignment() const;
+          void alignment(Alignment const &align);
 
           const std::uint16_t width() const;
           void width(std::uint16_t const &width);
