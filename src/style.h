@@ -21,28 +21,29 @@ namespace bornageek {
           std::uint16_t mWidth = 0;
 
         public:
-          Styleable();
+          Style();
+          Style(const Style &s);
 
           const std::string& borderX() const;
-          void borderX(std::string const &borderStyle);
+          void borderX(const std::string &borderStyle);
 
           const std::string& borderY() const;
-          void borderY(std::string const &borderStyle);
+          void borderY(const std::string &borderStyle);
 
           const std::string& borderE() const;
-          void borderE(std::string const &borderStyle);
+          void borderE(const std::string &borderStyle);
 
           const std::uint16_t paddingLeft() const;
-          void paddingLeft(std::uint16_t const &padding);
+          void paddingLeft(const std::uint16_t &padding);
 
           const std::uint16_t paddingRight() const;
-          void paddingRight(std::uint16_t const &padding);
+          void paddingRight(const std::uint16_t &padding);
 
           const Alignment alignment() const;
-          void alignment(Alignment const &align);
+          void alignment(const Alignment &align);
 
           const std::uint16_t width() const;
-          void width(std::uint16_t const &width);
+          void width(const std::uint16_t &width);
       };
     }
   }

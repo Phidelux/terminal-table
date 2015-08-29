@@ -1,15 +1,23 @@
 #include <string>
 
-#include "styleable.h"
+#include "style.h"
 
 namespace bornageek {
   namespace utils {
     namespace termtab {
+      Style::Style() {}
+
+      Style::Style(const Style &s) 
+        : mBorderX(s.mBorderX), mBorderY(s.mBorderY), mBorderE(s.mBorderE),
+        mPaddingLeft(s.mPaddingLeft), mPaddingRight(s.mPaddingRight),
+        mAlign(s.mAlign), mWidth(s.mWidth)
+      {}
+      
       const std::string& Style::borderX() const {
         return this->mBorderX;
       }
 
-      void Style::borderX(std::string const &borderStyle) {
+      void Style::borderX(const std::string  &borderStyle) {
         this->mBorderX = borderStyle;
       }
 
@@ -17,7 +25,7 @@ namespace bornageek {
         return this->mBorderY;
       }
 
-      void Style::borderY(std::string const &borderStyle) {
+      void Style::borderY(const std::string &borderStyle) {
         this->mBorderY = borderStyle;
       }
 
@@ -25,7 +33,7 @@ namespace bornageek {
         return this->mBorderE;
       }
 
-      void Style::borderE(std::string const &borderStyle) {
+      void Style::borderE(const std::string &borderStyle) {
         this->mBorderE = borderStyle;
       }
 
@@ -33,7 +41,7 @@ namespace bornageek {
         return this->mPaddingLeft;
       }
 
-      void Style::paddingLeft(std::uint16_t const &padding) {
+      void Style::paddingLeft(const std::uint16_t &padding) {
         this->mPaddingLeft = padding;
       }
 
@@ -41,7 +49,7 @@ namespace bornageek {
         return this->mPaddingRight;
       }
 
-      void Style::paddingRight(std::uint16_t const &padding) {
+      void Style::paddingRight(const std::uint16_t &padding) {
         this->mPaddingRight = padding;
       }
 
@@ -49,7 +57,7 @@ namespace bornageek {
         return this->mAlign;
       }
 
-      void Style::alignment(Alignment const &align) {
+      void Style::alignment(const Alignment &align) {
         this->mAlign = align;
       }
 
@@ -57,7 +65,7 @@ namespace bornageek {
         return this->mWidth;
       }
 
-      void Style::width(std::uint16_t const &width) {
+      void Style::width(const std::uint16_t &width) {
         this->mWidth = width;
       }
     }
