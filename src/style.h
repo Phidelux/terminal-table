@@ -7,7 +7,7 @@ namespace bornageek {
         LEFT, RIGHT, CENTER
       };
 
-      class Styleable {
+      class Style {
         private:
           std::string mBorderX = "-";
           std::string mBorderY = "|";
