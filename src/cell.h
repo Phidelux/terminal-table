@@ -2,6 +2,7 @@
 #define CELL_H
 
 #include <string>
+#include <ostream>
 
 #include "style.h"
 
@@ -38,6 +39,10 @@ namespace bornageek {
 
           const std::string render() const;
       };
+
+      inline std::ostream& operator<<(std::ostream& stream, const Cell& cell) {
+        return stream << cell.render();
+      }
     }
   }
 }

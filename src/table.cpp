@@ -98,7 +98,7 @@ namespace bornageek {
         std::stringstream ss;
 
         for_each(mRows.begin(), mRows.end(), 
-          [&ss](const Row &row){ ss << row.render(); });
+          [&ss](const Row &row){ ss << row; });
 
         return ss.str();
       }

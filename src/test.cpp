@@ -32,7 +32,7 @@ class TableTest {
 
       termtab::Table table(style, rows);
       table.alignColumn(2, termtab::Alignment::RIGHT);
-      std::cout << table.render();
+      std::cout << table;
     }
 };
 

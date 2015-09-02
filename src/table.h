@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <ostream>
 
 #include "style.h"
 #include "cell.h"
@@ -47,6 +48,10 @@ namespace bornageek {
 
           const std::string render() const;
       };
+
+      inline std::ostream& operator<<(std::ostream &stream, const Table &table) {
+        return stream << table.render();
+      }
     }
   }
 }

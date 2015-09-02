@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <ostream>
 
 namespace bornageek {
   namespace utils {
@@ -31,6 +32,10 @@ namespace bornageek {
 
           const std::string render() const;
       };
+
+      inline std::ostream& operator<<(std::ostream& stream, const Row &row) {
+        return stream << row.render();
+      }
     }
   }
 }

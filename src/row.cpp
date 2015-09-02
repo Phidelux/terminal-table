@@ -57,7 +57,7 @@ namespace bornageek {
 
         std::for_each(mCells.begin(), mCells.end(),
           [&ss, borderY](const Cell &cell) { 
-            ss << cell.render() << borderY;
+            ss << cell << borderY;
           });
 
         ss << std::endl;
