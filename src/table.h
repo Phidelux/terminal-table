@@ -46,10 +46,10 @@ namespace bornageek {
           const std::vector<Row> rows() const;
           void rows(const std::vector<std::vector<std::string>> &rows);
 
-          const std::string render() const;
+          const std::string render();
       };
 
-      inline std::ostream& operator<<(std::ostream &stream, const Table &table) {
+      inline std::ostream& operator<<(std::ostream &stream, Table &table) {
         return stream << table.render();
       }
     }

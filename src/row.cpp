@@ -52,13 +52,16 @@ namespace bornageek {
       const std::string Row::render() const {
         std::stringstream ss;
 
-        std::string borderY = this->mTable->style().borderY();
-        ss << borderY;
+        Style style = this->mTable->style();
+        ss << style.borderLeft();
 
-        std::for_each(mCells.begin(), mCells.end(),
-          [&ss, borderY](const Cell &cell) { 
-            ss << cell << borderY;
-          });
+        for(std::vector<Cell>::const_iterator it = mCells.begin(); it != mCells.end(); ++it) {
+          if(std::next(it) != mCells.end()) {
+            ss << *it << style.borderMiddle();
+          } else {
+            ss << *it << style.borderRight();
+          }
+        }
 
         ss << std::endl;
 

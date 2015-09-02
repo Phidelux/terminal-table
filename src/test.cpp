@@ -28,7 +28,6 @@ class TableTest {
       termtab::Style style;
       style.paddingLeft(2);
       style.paddingRight(3);
-      style.borderY(":");
 
       termtab::Table table(style, rows);
       table.alignColumn(2, termtab::Alignment::RIGHT);

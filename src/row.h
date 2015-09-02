@@ -12,7 +12,7 @@ namespace bornageek {
       class Cell;
 
       class Row {
-        private:
+        protected:
           Table* mTable = nullptr;
           std::uint16_t mCellIndex = 0;
           std::vector<Cell> mCells;
@@ -30,7 +30,7 @@ namespace bornageek {
           void cell(const std::string &value);
           Cell& cell(const std::uint16_t idx);
 
-          const std::string render() const;
+          virtual const std::string render() const;
       };
 
       inline std::ostream& operator<<(std::ostream& stream, const Row &row) {

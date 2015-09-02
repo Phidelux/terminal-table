@@ -1,4 +1,5 @@
 #include "table.h"
+#include "separator.h"
 
 #include <sstream>
 #include <algorithm>
@@ -55,8 +56,15 @@ namespace bornageek {
       }
 
       const std::uint16_t Table::numColumns() {
-        // TODO: Implement method.
-        return 0;
+        std::uint16_t max = 0;
+        std::for_each(this->mRows.begin(), this->mRows.end(),
+          [&max](Row row) {
+            if(row.cells().size() > max) {
+              max = row.cells().size();
+            }
+          });
+
+        return max;
       }
 
       const Style Table::style() const {
@@ -94,11 +102,17 @@ namespace bornageek {
             mRows.push_back(Row(this, row)); });
       }
 
-      const std::string Table::render() const {
+      const std::string Table::render() {
         std::stringstream ss;
+        Separator sep(this);
 
+        ss << sep;
         for_each(mRows.begin(), mRows.end(), 
-          [&ss](const Row &row){ ss << row; });
+          [&ss, sep](Row row){ 
+            if(row.cells().size() > 0) {
+              ss << row << sep; 
+            }
+          });
 
         return ss.str();
       }
