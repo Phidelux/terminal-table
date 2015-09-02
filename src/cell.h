@@ -36,7 +36,7 @@ namespace bornageek {
 
           const std::uint16_t width() const;
 
-          void render() const;
+          const std::string render() const;
       };
     }
   }

@@ -1,5 +1,6 @@
 #include "table.h"
 
+#include <sstream>
 #include <algorithm>
 #include <functional>
 
@@ -93,9 +94,13 @@ namespace bornageek {
             mRows.push_back(Row(this, row)); });
       }
 
-      void Table::render() {
+      const std::string Table::render() const {
+        std::stringstream ss;
+
         for_each(mRows.begin(), mRows.end(), 
-          [](const Row &row){ row.render(); });
+          [&ss](const Row &row){ ss << row.render(); });
+
+        return ss.str();
       }
     }
   }

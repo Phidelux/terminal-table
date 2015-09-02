@@ -1,7 +1,7 @@
 #include "cell.h"
 #include "table.h"
 
-#include <iostream>
+#include <sstream>
 #include <iomanip>
 
 namespace bornageek {
@@ -51,24 +51,28 @@ namespace bornageek {
         return innerWidth + padding;
       }
 
-      void Cell::render() const {
+      const std::string Cell::render() const {
+        std::stringstream ss;
+
         std::string left(this->mTable->style().paddingLeft(), ' ');
         std::string right(this->mTable->style().paddingRight(), ' ');
 
         switch(this->mAlign) {
           case Alignment::LEFT:
-            std::cout << left << std::setw(this->width()) 
+            ss << left << std::setw(this->width()) 
               << std::left << std::setfill(' ') << mValue << right;
             break;
           case Alignment::RIGHT:
-            std::cout << left << std::setw(this->width()) 
+            ss << left << std::setw(this->width()) 
               << std::right << std::setfill(' ') << mValue << right;
             break;
           case Alignment::CENTER:
-            std::cout << left << std::setw(this->width()) 
+            ss << left << std::setw(this->width()) 
               << std::setfill(' ') << mValue << right;
             break;
         }
+
+        return ss.str();
       }
     }
   }

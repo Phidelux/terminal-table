@@ -29,7 +29,7 @@ namespace bornageek {
           void cell(const std::string &value);
           Cell& cell(const std::uint16_t idx);
 
-          void render() const;
+          const std::string render() const;
       };
     }
   }

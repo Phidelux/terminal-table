@@ -3,9 +3,9 @@
 #include "cell.h"
 #include "row.h"
 
+#include <sstream>
 #include <algorithm>
 #include <functional>
-#include <iostream>
 
 namespace bornageek {
   namespace utils {
@@ -49,17 +49,20 @@ namespace bornageek {
         return this->mCells[idx];
       }
 
-      void Row::render() const {
+      const std::string Row::render() const {
+        std::stringstream ss;
+
         std::string borderY = this->mTable->style().borderY();
-        std::cout << borderY;
+        ss << borderY;
 
         std::for_each(mCells.begin(), mCells.end(),
-          [borderY](const Cell &cell) { 
-            cell.render();
-            std::cout << borderY;
+          [&ss, borderY](const Cell &cell) { 
+            ss << cell.render() << borderY;
           });
 
-        std::cout << std::endl;
+        ss << std::endl;
+
+        return ss.str();
       }
     }
   }

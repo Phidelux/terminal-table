@@ -10,11 +10,11 @@ namespace termtab = bornageek::utils::termtab;
 class TableTest {
   public:
     TableTest() {
-      std::cout << "Starting table test ..." << std::endl;
+      std::cout << "Starting table test ..." << std::endl << std::endl;
     }
 
     ~TableTest() {
-      std::cout << "Stopping table test ..." << std::endl;
+      std::cout << std::endl << "Stopping table test ..." << std::endl;
     }
 
     void run() {
@@ -32,7 +32,7 @@ class TableTest {
 
       termtab::Table table(style, rows);
       table.alignColumn(2, termtab::Alignment::RIGHT);
-      table.render();
+      std::cout << table.render();
     }
 };
 

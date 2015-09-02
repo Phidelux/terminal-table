@@ -45,7 +45,7 @@ namespace bornageek {
           const std::vector<Row> rows() const;
           void rows(const std::vector<std::vector<std::string>> &rows);
 
-          void render();
+          const std::string render() const;
       };
     }
   }
