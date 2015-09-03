@@ -55,11 +55,15 @@ namespace bornageek {
         Style style = this->mTable->style();
         ss << style.borderLeft();
 
-        for(std::vector<Cell>::const_iterator it = mCells.begin(); it != mCells.end(); ++it) {
-          if(std::next(it) != mCells.end()) {
-            ss << *it << style.borderMiddle();
+        for(std::size_t i = 0; i < this->mTable->numColumns(); i++) {
+          if(i < mCells.size() - 1) {
+            ss << mCells[i] << style.borderMiddle();
+          } else if(i == mCells.size() - 1) {
+            ss << mCells[i] << style.borderRight();
           } else {
-            ss << *it << style.borderRight();
+            std::uint16_t space = mTable->columnWidth(i) 
+              + mTable->style().paddingLeft() + mTable->style().paddingRight();
+            ss << std::string(space, ' ') << style.borderMiddle();
           }
         }
 

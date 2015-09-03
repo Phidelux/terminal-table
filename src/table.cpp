@@ -46,7 +46,7 @@ namespace bornageek {
         std::uint16_t max = 0;
         std::for_each(this->mRows.begin(), this->mRows.end(),
           [&max, n](Row row) { 
-            if(row.cell(n).value().length() > max) {
+            if(row.cells().size() > n && row.cell(n).value().length() > max) {
               max = row.cell(n).value().length();
             } 
           });

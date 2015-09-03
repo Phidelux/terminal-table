@@ -19,10 +19,10 @@ class TableTest {
 
     void run() {
       std::vector<std::vector<std::string>> rows{
-        {"Lorem", "ipsum", "dolor"},
-        {"Sit", "amet", "consectetur"},
-        {"Adipiscing", "elit", "sed"},
-        {"Do", "ex", ""}
+        {"Karl Kangaroo", "13. Sep 1988", "jumping"},
+        {"Austin Ape", "24. Jul 2000", "climbing, jumping"},
+        {"Bertha Bear", "3. Feb 1976", "sleeping", "Sherwood Forest"},
+        {"Paul Penguin", "6. Oct 1954"}
       };
 
       termtab::Style style;
