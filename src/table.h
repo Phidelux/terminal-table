@@ -32,7 +32,7 @@ namespace bornageek {
 
           const std::vector<Cell> column(const std::uint16_t n) const;
           const std::uint16_t columnWidth(const std::uint16_t n) const;
-          const std::uint16_t numColumns();
+          const std::uint16_t numColumns() const;
 
           const Style style() const;
           void style(const Style &style);
@@ -46,7 +46,8 @@ namespace bornageek {
           const std::vector<Row> rows() const;
           void rows(const std::vector<std::vector<std::string>> &rows);
 
-          const std::string render();
+          const std::string renderSeparator() const;
+          const std::string render() const;
       };
 
       inline std::ostream& operator<<(std::ostream &stream, Table &table) {

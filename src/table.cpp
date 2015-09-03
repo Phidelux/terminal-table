@@ -1,5 +1,4 @@
 #include "table.h"
-#include "separator.h"
 
 #include <sstream>
 #include <algorithm>
@@ -55,7 +54,7 @@ namespace bornageek {
         return max;
       }
 
-      const std::uint16_t Table::numColumns() {
+      const std::uint16_t Table::numColumns() const {
         std::uint16_t max = 0;
         std::for_each(this->mRows.begin(), this->mRows.end(),
           [&max](Row row) {
@@ -102,9 +101,35 @@ namespace bornageek {
             mRows.push_back(Row(this, row)); });
       }
 
-      const std::string Table::render() {
+      const std::string Table::renderSeparator() const {
         std::stringstream ss;
-        Separator sep(this);
+
+        ss << this->mStyle.borderLeftMid();
+
+        for(std::size_t i = 0; i < this->numColumns(); i++) {
+          std::uint16_t width = this->columnWidth(i) 
+                  + this->mStyle.paddingLeft() + this->mStyle.paddingRight();
+
+          for(std::size_t j = 0 ; j < width; j++ ) { 
+            ss << this->mStyle.borderMid();
+          }
+
+          if(i+1 < this->numColumns()) {
+            ss << this->mStyle.borderMidMid();
+          } else {
+            ss << this->mStyle.borderRightMid();
+          }
+        }
+
+        ss << std::endl;
+
+        return ss.str();
+      }
+
+      const std::string Table::render() const {
+        std::stringstream ss;
+
+        std::string sep = this->renderSeparator();
 
         ss << sep;
         for_each(mRows.begin(), mRows.end(), 
