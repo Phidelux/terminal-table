@@ -30,6 +30,7 @@ class TableTest {
       style.paddingRight(3);
 
       termtab::Table table(style, rows);
+      table.headings({"Name", "Birthday", "Tags","Adress"});
       table.alignColumn(2, termtab::Alignment::RIGHT);
       std::cout << table;
     }

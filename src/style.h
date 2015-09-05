@@ -12,24 +12,24 @@ namespace bornageek {
 
       class Style {
         private:
-          std::string mBorderTop = "\u2500";
-          std::string mBorderTopMid = "\u252C";
-          std::string mBorderTopLeft = "\u250C";
-          std::string mBorderTopRight = "\u2510";
+          std::string mBorderTop = "\u2501";
+          std::string mBorderTopMid = "\u252F";
+          std::string mBorderTopLeft = "\u250F";
+          std::string mBorderTopRight = "\u2513";
 
-          std::string mBorderBottom = "\u2500";
-          std::string mBorderBottomMid = "\u2534";
-          std::string mBorderBottomLeft = "\u2514";
-          std::string mBorderBottomRight = "\u2518";
+          std::string mBorderBottom = "\u2501";
+          std::string mBorderBottomMid = "\u2537";
+          std::string mBorderBottomLeft = "\u2517";
+          std::string mBorderBottomRight = "\u251B";
 
-          std::string mBorderLeft = "\u2502";
-          std::string mBorderLeftMid = "\u251c";
+          std::string mBorderLeft = "\u2503";
+          std::string mBorderLeftMid = "\u2520";
 
           std::string mBorderMid = "\u2500";
           std::string mBorderMidMid = "\u253C";
 
-          std::string mBorderRight = "\u2502";
-          std::string mBorderRightMid = "\u2524";
+          std::string mBorderRight = "\u2503";
+          std::string mBorderRightMid = "\u2528";
 
           std::string mBorderMiddle = "\u2502";
 

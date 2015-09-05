@@ -27,10 +27,12 @@ namespace bornageek {
           std::vector<Cell>& cells();
           void cells(const std::vector<std::string> &cells);
 
+          const std::uint16_t numCells() const;
+
           void cell(const std::string &value);
           Cell& cell(const std::uint16_t idx);
 
-          virtual const std::string render() const;
+          const std::string render() const;
       };
 
       inline std::ostream& operator<<(std::ostream& stream, const Row &row) {

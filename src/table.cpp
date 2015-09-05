@@ -44,7 +44,9 @@ namespace bornageek {
 
       const std::uint16_t Table::columnWidth(const std::uint16_t n) const {
         std::uint16_t max = 0;
-        std::for_each(this->mRows.begin(), this->mRows.end(),
+
+        std::vector<Row> rows = this->rowsWithHeadings();
+        std::for_each(rows.begin(), rows.end(),
           [&max, n](Row row) { 
             if(row.cells().size() > n && row.cell(n).value().length() > max) {
               max = row.cell(n).value().length();
@@ -56,7 +58,8 @@ namespace bornageek {
 
       const std::uint16_t Table::numColumns() const {
         std::uint16_t max = 0;
-        std::for_each(this->mRows.begin(), this->mRows.end(),
+        std::vector<Row> rows = this->rowsWithHeadings();
+        std::for_each(rows.begin(), rows.end(),
           [&max](Row row) {
             if(row.cells().size() > max) {
               max = row.cells().size();
@@ -82,12 +85,12 @@ namespace bornageek {
         this->mTitle = title;
       }
 
-      const std::vector<std::string> Table::headings() const {
+      const Row Table::headings() const {
         return this->mHeadings;
       }
 
       void Table::headings(const std::vector<std::string> &headings) {
-        this->mHeadings = headings;
+        this->mHeadings = Row(this, headings);
       }
 
       const std::vector<Row> Table::rows() const {
@@ -101,23 +104,34 @@ namespace bornageek {
             mRows.push_back(Row(this, row)); });
       }
 
-      const std::string Table::renderSeparator() const {
+      const std::vector<Row> Table::rowsWithHeadings() const {
+        if( this->mHeadings.numCells() > 0 ) {
+          std::vector<Row> rows = this->rows();
+          rows.insert(rows.begin(), this->headings());
+          return rows;
+        }
+
+        return this->rows();
+      }
+
+      const std::string Table::renderSeparator(std::string left, 
+            std::string mid, std::string right, std::string sep) const {
         std::stringstream ss;
 
-        ss << this->mStyle.borderLeftMid();
+        ss << left;
 
         for(std::size_t i = 0; i < this->numColumns(); i++) {
           std::uint16_t width = this->columnWidth(i) 
                   + this->mStyle.paddingLeft() + this->mStyle.paddingRight();
 
           for(std::size_t j = 0 ; j < width; j++ ) { 
-            ss << this->mStyle.borderMid();
+            ss << sep;
           }
 
           if(i+1 < this->numColumns()) {
-            ss << this->mStyle.borderMidMid();
+            ss << mid;
           } else {
-            ss << this->mStyle.borderRightMid();
+            ss << right;
           }
         }
 
@@ -129,15 +143,26 @@ namespace bornageek {
       const std::string Table::render() const {
         std::stringstream ss;
 
-        std::string sep = this->renderSeparator();
+        std::string sep = this->renderSeparator(
+          this->mStyle.borderLeftMid(), this->mStyle.borderMidMid(), 
+          this->mStyle.borderRightMid(), this->mStyle.borderMid());
 
-        ss << sep;
-        for_each(mRows.begin(), mRows.end(), 
-          [&ss, sep](Row row){ 
+        ss << this->renderSeparator(
+          this->mStyle.borderTopLeft(), this->mStyle.borderTopMid(), 
+          this->mStyle.borderTopRight(), this->mStyle.borderTop());
+        std::vector<Row> rowsWithHeadings = this->rowsWithHeadings();
+        std::for_each(rowsWithHeadings.begin(), --rowsWithHeadings.end(),
+          [&ss, sep, rowsWithHeadings](Row row){ 
             if(row.cells().size() > 0) {
               ss << row << sep; 
             }
           });
+
+        if( rowsWithHeadings.size() > 0) {
+          ss << rowsWithHeadings.back() << this->renderSeparator(
+            this->mStyle.borderBottomLeft(), this->mStyle.borderBottomMid(), 
+            this->mStyle.borderBottomRight(), this->mStyle.borderBottom());
+        }
 
         return ss.str();
       }

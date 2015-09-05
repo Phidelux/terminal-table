@@ -17,7 +17,7 @@ namespace bornageek {
         private:      
           Style mStyle;
           std::string mTitle;
-          std::vector<std::string> mHeadings;
+          Row  mHeadings;
           std::vector<Row> mRows;
 
         public:
@@ -40,13 +40,15 @@ namespace bornageek {
           const std::string title() const;
           void title(const std::string & title);
 
-          const std::vector<std::string> headings() const;
+          const Row headings() const;
           void headings(const std::vector<std::string> &headings);
 
           const std::vector<Row> rows() const;
           void rows(const std::vector<std::vector<std::string>> &rows);
 
-          const std::string renderSeparator() const;
+          const std::vector<Row> rowsWithHeadings() const;
+
+          const std::string renderSeparator(std::string left, std::string mid, std::string right, std::string sep) const;
           const std::string render() const;
       };
 

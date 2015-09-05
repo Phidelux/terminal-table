@@ -39,6 +39,10 @@ namespace bornageek {
           });
       }
 
+      const std::uint16_t Row::numCells() const {
+        return this->mCells.size();
+      }
+
       void Row::cell(const std::string &value) {
         Cell cell(mTable, mCellIndex, value);
         mCells.push_back(cell);
@@ -55,15 +59,20 @@ namespace bornageek {
         Style style = this->mTable->style();
         ss << style.borderLeft();
 
-        for(std::size_t i = 0; i < this->mTable->numColumns(); i++) {
-          if(i < mCells.size() - 1) {
+        for(std::uint16_t i = 0; i < mTable->numColumns(); i++) {
+          if(i < mCells.size() - 1 && i < mTable->numColumns() - 1) {
             ss << mCells[i] << style.borderMiddle();
-          } else if(i == mCells.size() - 1) {
+          } else if(i == mCells.size() - 1 && i == mTable->numColumns() - 1) {
             ss << mCells[i] << style.borderRight();
           } else {
             std::uint16_t space = mTable->columnWidth(i) 
               + mTable->style().paddingLeft() + mTable->style().paddingRight();
-            ss << std::string(space, ' ') << style.borderMiddle();
+            
+            if(i < mTable->numColumns() - 1) {
+              ss << std::string(space, ' ') << style.borderMiddle();
+            } else {
+              ss << std::string(space, ' ') << style.borderRight();
+            }
           }
         }
 
