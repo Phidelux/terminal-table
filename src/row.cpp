@@ -77,7 +77,6 @@ namespace bornageek {
       const std::string Row::render() const {
         std::uint16_t numColumns = mTable->numColumns();
         std::uint16_t numLines = this->height();
-        std::uint16_t colSpan = 1;
 
         std::stringstream ss;
 
@@ -85,35 +84,26 @@ namespace bornageek {
 
         for(std::uint16_t l = 0; l < numLines; l++) {
           ss << style.borderLeft();
-          colSpan = 1;
 
           for(std::uint16_t c = 0; c < numColumns; c++) {
-            if(colSpan > 1) {
-              colSpan--;
-              continue;
-            }
-            
-            if(c < mCells.size()) {
-              colSpan = mCells[c].colSpan();
-            }
-
-            if(c < mCells.size() && c < numColumns - 1) {
-              ss << mCells[c].render(l) << style.borderMiddle();
-            } else if(c == mCells.size() - 1 && c == numColumns - 1) {
-              ss << mCells[c].render(l) << style.borderRight();
+            if(c < mCells.size() && mCells[c].colSpan() > 1) {
+              ss << mCells[c].render(l); 
+              c += mCells[c].colSpan() - 1;
+            } else if(c < mCells.size()) {
+              ss << mCells[c].render(l);
             } else {
               std::uint16_t space = mTable->columnWidth(c) 
                 + mTable->style().paddingLeft() + mTable->style().paddingRight();
             
-              if(c < numColumns - 1) {
-                ss << std::string(space, ' ') << style.borderMiddle();
-              } else {
-                ss << std::string(space, ' ') << style.borderRight();
-              }
+              ss << std::string(space, ' ');
+            }
+
+            if(c < numColumns - 1) {
+              ss << style.borderMiddle();
             }
           }
 
-          ss << std:: endl;
+          ss << style.borderRight() << std:: endl;
         }
 
         return ss.str();
