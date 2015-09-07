@@ -38,11 +38,12 @@ namespace bornageek {
           void style(const Style &style);
 
           const std::string title() const;
-          void title(const std::string & title);
+          void title(const std::string &title);
 
           const Row headings() const;
           void headings(const std::vector<std::string> &headings);
 
+          Row& row(std::uint16_t idx);
           const std::vector<Row> rows() const;
           void rows(const std::vector<std::vector<std::string>> &rows);
 

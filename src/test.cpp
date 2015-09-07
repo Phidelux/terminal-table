@@ -20,18 +20,24 @@ class TableTest {
     void run() {
       std::vector<std::vector<std::string>> rows{
         {"Karl Kangaroo", "13. Sep 1988", "jumping"},
-        {"Austin Ape", "24. Jul 2000", "climbing, jumping"},
+        {"Austin Ape", "24. Jul 2000", "climbing, jumping,\nsurfing"},
+        {"..."},
         {"Bertha Bear", "3. Feb 1976", "sleeping", "Sherwood Forest"},
-        {"Paul Penguin", "6. Oct 1954"}
+        {"Toni Tiger", "31. Jan 1935", "sleeping, hunting"},
+        {"Paul Penguin", "6. Oct 1954"},
+        {"Gira Giraffe", "10. Sep 1943", "", "London Zoo"},
+        {"To be continued ..."}
       };
 
       termtab::Style style;
-      style.paddingLeft(2);
-      style.paddingRight(3);
+      style.paddingLeft(3);
+      style.paddingRight(2);
 
       termtab::Table table(style, rows);
-      table.headings({"Name", "Birthday", "Tags","Adress"});
-      table.alignColumn(2, termtab::Alignment::RIGHT);
+      table.headings({"Name", "Birthday", "Tags", "Adress"});
+      table.alignColumn(1, termtab::Alignment::RIGHT);
+      table.row(2).cell(0).colSpan(4);
+      table.row(7).cell(0).colSpan(3);
       std::cout << table;
     }
 };

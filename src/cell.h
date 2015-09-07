@@ -36,13 +36,15 @@ namespace bornageek {
           void colSpan(const std::uint16_t &colSpan);
 
           const std::uint16_t width() const;
+          const std::uint16_t height() const;
 
-          const std::string render() const;
+          const std::uint16_t maxLineWidth() const;
+
+          const std::string line(std::uint16_t idx) const;
+          void trimLine(std::string &line) const;
+
+          const std::string render(std::uint16_t lineIdx) const;
       };
-
-      inline std::ostream& operator<<(std::ostream& stream, const Cell& cell) {
-        return stream << cell.render();
-      }
     }
   }
 }

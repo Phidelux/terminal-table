@@ -26,7 +26,10 @@ namespace bornageek {
       }
 
       const std::uint16_t Table::cellSpacing() const {
-        return this->cellPadding() + this->mStyle.paddingRight();
+        std::uint16_t sepLen = 0;
+        const char *s = this->mStyle.borderMiddle().c_str();         
+        while(*s) { sepLen += (*s++ & 0xc0) != 0x80; }
+        return this->cellPadding() + sepLen;
       }
 
       const std::uint16_t Table::cellPadding() const {
@@ -47,9 +50,9 @@ namespace bornageek {
 
         std::vector<Row> rows = this->rowsWithHeadings();
         std::for_each(rows.begin(), rows.end(),
-          [&max, n](Row row) { 
-            if(row.cells().size() > n && row.cell(n).value().length() > max) {
-              max = row.cell(n).value().length();
+          [&max, n](const Row &row) { 
+            if(n < row.numCells() && row.cellWidth(n) > max) {
+              max = row.cellWidth(n);
             } 
           });
 
@@ -60,9 +63,9 @@ namespace bornageek {
         std::uint16_t max = 0;
         std::vector<Row> rows = this->rowsWithHeadings();
         std::for_each(rows.begin(), rows.end(),
-          [&max](Row row) {
-            if(row.cells().size() > max) {
-              max = row.cells().size();
+          [&max](const Row &row) {
+            if(row.numCells() > max) {
+              max = row.numCells();
             }
           });
 
@@ -91,6 +94,10 @@ namespace bornageek {
 
       void Table::headings(const std::vector<std::string> &headings) {
         this->mHeadings = Row(this, headings);
+      }
+
+      Row& Table::row(std::uint16_t idx) {
+        return this->mRows[idx];
       }
 
       const std::vector<Row> Table::rows() const {

@@ -28,9 +28,12 @@ namespace bornageek {
           void cells(const std::vector<std::string> &cells);
 
           const std::uint16_t numCells() const;
+          const std::uint16_t cellWidth(const std::uint16_t idx) const;
 
           void cell(const std::string &value);
           Cell& cell(const std::uint16_t idx);
+
+          const std::uint16_t height() const;
 
           const std::string render() const;
       };
