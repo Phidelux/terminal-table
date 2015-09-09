@@ -14,7 +14,6 @@ namespace bornageek {
       class Row {
         protected:
           Table* mTable = nullptr;
-          std::uint16_t mCellIndex = 0;
           std::vector<Cell> mCells;
 
         public:

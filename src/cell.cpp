@@ -12,9 +12,9 @@ namespace bornageek {
       Cell::Cell() {
       }
 
-      Cell::Cell(Table* table, const std::uint16_t &idx, 
-        const std::string &val, const std::uint16_t &colSpan) 
-      : mTable(table), mIndex(idx), mValue(val), mColSpan(colSpan) {
+      Cell::Cell(Table* table, const std::string &val, 
+          const std::uint16_t &colSpan) 
+      : mTable(table), mValue(val), mColSpan(colSpan) {
         this->mWidth = val.length();
       }
 
@@ -42,12 +42,12 @@ namespace bornageek {
         this->mColSpan = colSpan;
       }
 
-      const std::uint16_t Cell::width() const {
+      const std::uint16_t Cell::width(std::uint16_t col) const {
         std::uint16_t padding = (mColSpan - 1) * mTable->cellSpacing();
         std::uint16_t innerWidth = 0;
 
         for(std::uint16_t i = 1; i <= mColSpan; i++) {
-          innerWidth += this->mTable->columnWidth(this->mIndex + i - 1);
+          innerWidth += this->mTable->columnWidth(col + i - 1);
         }
         
         return innerWidth + padding;
@@ -98,10 +98,10 @@ namespace bornageek {
           std::not1(std::ptr_fun<int, int>(std::isspace))).base(), line.end());
       }
 
-      const std::string Cell::render(std::uint16_t lineIdx) const {
+      const std::string Cell::render(std::uint16_t line, std::uint16_t col) const {
         std::stringstream ss;
 
-        std::uint16_t width = this->width();
+        std::uint16_t width = this->width(col);
 
         std::string left(this->mTable->style().paddingLeft(), ' ');
         std::string right(this->mTable->style().paddingRight(), ' ');
@@ -109,15 +109,15 @@ namespace bornageek {
         switch(this->mAlign) {
           case Alignment::LEFT:
             ss << left << std::setw(width) 
-              << std::left << std::setfill(' ') << this->line(lineIdx) << right;
+              << std::left << std::setfill(' ') << this->line(line) << right;
             break;
           case Alignment::RIGHT:
             ss << left << std::setw(width) 
-              << std::right << std::setfill(' ') << this->line(lineIdx) << right;
+              << std::right << std::setfill(' ') << this->line(line) << right;
             break;
           case Alignment::CENTER:
             ss << left << std::setw(width) 
-              << std::setfill(' ') << this->line(lineIdx) << right;
+              << std::setfill(' ') << this->line(line) << right;
             break;
         }
 

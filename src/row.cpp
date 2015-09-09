@@ -47,9 +47,8 @@ namespace bornageek {
       }
 
       void Row::cell(const std::string &value) {
-        Cell cell(mTable, mCellIndex, value);
+        Cell cell(mTable, value);
         mCells.push_back(cell);
-        mCellIndex += cell.colSpan();
       }
 
       Cell& Row::cell(const std::uint16_t idx) {
@@ -82,10 +81,10 @@ namespace bornageek {
 
           for(std::uint16_t c = 0; c < numColumns; c++) {
             if(c < mCells.size() && mCells[c].colSpan() > 1) {
-              ss << mCells[c].render(l); 
+              ss << mCells[c].render(l, c); 
               c += mCells[c].colSpan() - 1;
             } else if(c < mCells.size()) {
-              ss << mCells[c].render(l);
+              ss << mCells[c].render(l, c);
             } else {
               ss << std::string(mTable->columnWidth(c) 
                 + mTable->style().paddingLeft() + mTable->style().paddingRight(),

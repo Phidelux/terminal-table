@@ -14,7 +14,6 @@ namespace bornageek {
       class Cell {
         private:
           Table* mTable = nullptr;
-          std::uint16_t mIndex = 0;
           std::string mValue = "";
           Alignment mAlign = Alignment::LEFT;
           std::uint16_t mColSpan = 1;
@@ -23,8 +22,8 @@ namespace bornageek {
         public:
           Cell();
 
-          Cell(Table* table, const std::uint16_t &idx, 
-            const std::string &val = "", const std::uint16_t &colSpan = 1);
+          Cell(Table* table, const std::string &val = "", 
+              const std::uint16_t &colSpan = 1);
 
           const std::string& value() const;
           void value(const std::string &val);
@@ -35,7 +34,7 @@ namespace bornageek {
           const std::uint16_t colSpan() const;
           void colSpan(const std::uint16_t &colSpan);
 
-          const std::uint16_t width() const;
+          const std::uint16_t width(std::uint16_t col) const;
           const std::uint16_t height() const;
 
           const std::uint16_t maxLineWidth() const;
@@ -43,7 +42,7 @@ namespace bornageek {
           const std::string line(std::uint16_t idx) const;
           void trimLine(std::string &line) const;
 
-          const std::string render(std::uint16_t lineIdx) const;
+          const std::string render(std::uint16_t line, std::uint16_t col) const;
       };
     }
   }
