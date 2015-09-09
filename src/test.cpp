@@ -34,6 +34,7 @@ class TableTest {
       style.paddingRight(2);
 
       termtab::Table table(style, rows);
+      table.title("A simple Test-Table");
       table.headings({"Name", "Birthday", "Tags", "Adress"});
       table.alignColumn(1, termtab::Alignment::RIGHT);
       table.row(2).cell(0).colSpan(4);

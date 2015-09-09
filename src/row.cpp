@@ -46,6 +46,12 @@ namespace bornageek {
         return 0;
       }
 
+      void Row::cellColSpan(const std::uint16_t idx, std::uint16_t span) {
+        if(span > 0 && idx < this->numCells()) {
+          this->mCells[idx].colSpan(span);
+        }
+      }
+
       void Row::cell(const std::string &value) {
         Cell cell(mTable, value);
         mCells.push_back(cell);

@@ -1,5 +1,6 @@
 #include "table.h"
 
+#include <iomanip>
 #include <sstream>
 #include <algorithm>
 #include <functional>
@@ -109,13 +110,13 @@ namespace bornageek {
       }
 
       const std::vector<Row> Table::rowsWithHeadings() const {
-        if( this->mHeadings.numCells() > 0 ) {
-          std::vector<Row> rows = this->rows();
+        std::vector<Row> rows = this->rows();
+
+        if(this->mHeadings.numCells() > 0) {
           rows.insert(rows.begin(), this->headings());
-          return rows;
         }
 
-        return this->rows();
+        return rows;
       }
 
       const std::string Table::renderSeparator(
@@ -147,14 +148,36 @@ namespace bornageek {
       const std::string Table::render() const {
         std::stringstream ss;
 
+        std::vector<Row> rowsWithHeadings = this->rowsWithHeadings();
+        
         std::string sep = this->renderSeparator(
           this->mStyle.borderLeftMid(), this->mStyle.borderMidMid(), 
           this->mStyle.borderRightMid(), this->mStyle.borderMid());
 
-        ss << this->renderSeparator(
-          this->mStyle.borderTopLeft(), this->mStyle.borderTopMid(), 
-          this->mStyle.borderTopRight(), this->mStyle.borderTop());
-        std::vector<Row> rowsWithHeadings = this->rowsWithHeadings();
+        if(this->mTitle.length() > 0) {
+          std::uint16_t innerWidth = (this->numColumns() - 1) 
+              * this->cellSpacing() + this->cellPadding();
+
+          for(std::uint16_t c = 0; c < this->numColumns(); c++) {
+            innerWidth += this->columnWidth(c);
+          }
+
+          std::uint16_t spaceLeft = innerWidth / 2 - mTitle.length() / 2;
+
+          ss << this->mStyle.borderTopLeft() 
+             << std::string(innerWidth, this->mStyle.borderTop())
+             << this->mStyle.borderTopRight() << std::endl; 
+          ss << this->mStyle.borderLeft() 
+             << std::string(spaceLeft, ' ') << std::left 
+             << std::setw(innerWidth - spaceLeft) << std::setfill(' ') 
+             << this->mTitle; 
+          ss << this->mStyle.borderRight() << std::endl << sep;
+        } else {
+          ss << this->renderSeparator(
+            this->mStyle.borderTopLeft(), this->mStyle.borderTopMid(), 
+            this->mStyle.borderTopRight(), this->mStyle.borderTop());
+        }
+
         std::for_each(rowsWithHeadings.begin(), --rowsWithHeadings.end(),
           [&ss, sep, rowsWithHeadings](Row row){ 
             if(row.cells().size() > 0) {

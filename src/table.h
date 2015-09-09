@@ -17,7 +17,7 @@ namespace bornageek {
         private:      
           Style mStyle;
           std::string mTitle;
-          Row  mHeadings;
+          Row mHeadings;
           std::vector<Row> mRows;
 
         public:
