@@ -33,6 +33,22 @@ class TableTest {
       style.paddingLeft(3);
       style.paddingRight(2);
 
+      style.borderTop('=');
+      style.borderTopMid('#');
+      style.borderTopLeft('@');
+      style.borderTopRight('@');
+      style.borderBottom('=');
+      style.borderBottomMid('#');
+      style.borderBottomLeft('@');
+      style.borderBottomRight('@');
+      style.borderLeft('[');
+      style.borderLeftMid('#');
+      style.borderMid('-');
+      style.borderMidMid('+');
+      style.borderRight(']');
+      style.borderRightMid('#');
+      style.borderMiddle('|');
+
       termtab::Table table(style, rows);
       table.title("A simple Test-Table");
       table.headings({"Name", "Birthday", "Tags", "Adress"});
@@ -40,6 +56,7 @@ class TableTest {
       table.alignColumn(2, termtab::Alignment::CENTER);
       table.row(2).cell(0).colSpan(4);
       table.row(7).cell(0).colSpan(3);
+
       std::cout << table;
     }
 };

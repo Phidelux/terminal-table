@@ -12,24 +12,24 @@ namespace bornageek {
 
       class Style {
         private:
-          char mBorderTop = '=';
-          char mBorderTopMid = '#';
-          char mBorderTopLeft = '@';
-          char mBorderTopRight = '@';
+          char mBorderTop = '-';
+          char mBorderTopMid = '+';
+          char mBorderTopLeft = '+';
+          char mBorderTopRight = '+';
 
-          char mBorderBottom = '=';
-          char mBorderBottomMid = '#';
-          char mBorderBottomLeft = '@';
-          char mBorderBottomRight = '@';
+          char mBorderBottom = '-';
+          char mBorderBottomMid = '+';
+          char mBorderBottomLeft = '+';
+          char mBorderBottomRight = '+';
 
-          char mBorderLeft = '[';
-          char mBorderLeftMid = '#';
+          char mBorderLeft = '|';
+          char mBorderLeftMid = '+';
 
           char mBorderMid = '-';
           char mBorderMidMid = '+';
 
-          char mBorderRight = ']';
-          char mBorderRightMid = '#';
+          char mBorderRight = '|';
+          char mBorderRightMid = '+';
 
           char mBorderMiddle = '|';
 
@@ -45,7 +45,7 @@ namespace bornageek {
           Style(const Style &s);
 
           const char& borderTop() const;
-          void borerTop(const char &borderStyle);
+          void borderTop(const char &borderStyle);
 
           const char& borderTopMid() const;
           void borderTopMid(const char &borderStyle);

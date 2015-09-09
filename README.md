@@ -17,6 +17,7 @@ For usage examples have a look at [test.cpp](./src/test.cpp).
 ## Screenshots
 
 ![](./images/screenshot.png)
+![](./images/screenshot1.png)
 
 ## ToDos
 

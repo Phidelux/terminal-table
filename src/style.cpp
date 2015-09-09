@@ -21,7 +21,7 @@ namespace bornageek {
         return this->mBorderTop;
       }
 
-      void Style::borerTop(const char &borderStyle) {
+      void Style::borderTop(const char &borderStyle) {
         this->mBorderTop = borderStyle;
       }
 
