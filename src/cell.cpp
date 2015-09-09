@@ -1,8 +1,6 @@
 #include "cell.h"
 #include "table.h"
 
-#include <iostream>
-
 #include <limits>
 #include <sstream>
 #include <iomanip>
@@ -48,7 +46,7 @@ namespace bornageek {
         std::uint16_t padding = (mColSpan - 1) * mTable->cellSpacing();
         std::uint16_t innerWidth = 0;
 
-        for(std::size_t i = 1; i <= mColSpan; i++) {
+        for(std::uint16_t i = 1; i <= mColSpan; i++) {
           innerWidth += this->mTable->columnWidth(this->mIndex + i - 1);
         }
         
@@ -77,13 +75,10 @@ namespace bornageek {
         if(idx < this->height()) {
           std::istringstream stream(this->mValue);
           std::string line;
-          line.reserve(4048);    
         
-          for(int i = 0; i < idx; ++i) {
+          for(std::uint16_t i = 0; i <= idx; ++i) {
             std::getline(stream, line);
           }
-
-          std::getline(stream, line);
 
           this->trimLine(line);
 

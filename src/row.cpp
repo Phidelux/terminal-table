@@ -29,14 +29,9 @@ namespace bornageek {
       }
 
       void Row::cells(const std::vector<std::string> &cells) {
-        this->mCells = std::vector<Cell>();
-        this->mCellIndex = 0;
         std::for_each(cells.begin(), cells.end(), 
-          [this](const std::string &value) { 
-            Cell cell(mTable, mCellIndex, value);     
-            mCells.push_back(cell);
-            mCellIndex += cell.colSpan();
-          });
+          std::bind(static_cast<void(Row::*)(const std::string&)>(&Row::cell), 
+            this, std::placeholders::_1));
       }
 
       const std::uint16_t Row::numCells() const {
@@ -92,10 +87,9 @@ namespace bornageek {
             } else if(c < mCells.size()) {
               ss << mCells[c].render(l);
             } else {
-              std::uint16_t space = mTable->columnWidth(c) 
-                + mTable->style().paddingLeft() + mTable->style().paddingRight();
-            
-              ss << std::string(space, ' ');
+              ss << std::string(mTable->columnWidth(c) 
+                + mTable->style().paddingLeft() + mTable->style().paddingRight(),
+                ' ');
             }
 
             if(c < numColumns - 1) {
