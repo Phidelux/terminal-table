@@ -116,8 +116,12 @@ namespace bornageek {
               << std::right << std::setfill(' ') << this->line(line) << right;
             break;
           case Alignment::CENTER:
-            ss << left << std::setw(width) 
-              << std::setfill(' ') << this->line(line) << right;
+            std::string val = this->line(line); 
+            std::uint16_t innerWidth = width + this->mTable->cellPadding();
+            std::uint16_t spaceLeft = innerWidth / 2 - val.length() / 2;
+            
+            ss << std::string(spaceLeft, ' ') << std::setw(innerWidth - spaceLeft)
+               << std::left << std::setfill(' ') << this->line(line);
             break;
         }
 

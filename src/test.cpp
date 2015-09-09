@@ -37,6 +37,7 @@ class TableTest {
       table.title("A simple Test-Table");
       table.headings({"Name", "Birthday", "Tags", "Adress"});
       table.alignColumn(1, termtab::Alignment::RIGHT);
+      table.alignColumn(2, termtab::Alignment::CENTER);
       table.row(2).cell(0).colSpan(4);
       table.row(7).cell(0).colSpan(3);
       std::cout << table;

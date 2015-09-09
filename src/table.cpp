@@ -19,7 +19,11 @@ namespace bornageek {
 
       void Table::alignColumn(const std::uint16_t n, const Alignment &align) {
         std::for_each(this->mRows.begin(), this->mRows.end(), 
-          [n, align](Row &row){ row.cells()[n].alignment(align); });
+          [n, align](Row &row){ 
+            if(row.numCells() > n) {
+              row.cells()[n].alignment(align);
+            }
+          });
       }
 
       void Table::addRow(const std::vector<std::string> &row) {
