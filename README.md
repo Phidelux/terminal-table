@@ -12,7 +12,7 @@ and add them to your build path.
 
 ## Usage
 
-For usage examples have a look at ![test.cpp](./src/test.cpp).
+For usage examples have a look at [test.cpp](./src/test.cpp).
 
 ## Screenshots
 
