@@ -42,7 +42,7 @@ namespace bornageek {
         this->mColSpan = colSpan;
       }
 
-      const std::uint16_t Cell::width(std::uint16_t col) const {
+      const std::uint16_t Cell::width(const std::uint16_t col) const {
         std::uint16_t padding = (mColSpan - 1) * mTable->cellSpacing();
         std::uint16_t innerWidth = 0;
 
@@ -71,7 +71,7 @@ namespace bornageek {
         return max;
       }
 
-      const std::string Cell::line(std::uint16_t idx) const {
+      const std::string Cell::line(const std::uint16_t idx) const {
         if(idx < this->height()) {
           std::istringstream stream(this->mValue);
           std::string line;
@@ -98,7 +98,7 @@ namespace bornageek {
           std::not1(std::ptr_fun<int, int>(std::isspace))).base(), line.end());
       }
 
-      const std::string Cell::render(std::uint16_t line, std::uint16_t col) const {
+      const std::string Cell::render(const std::uint16_t line, const std::uint16_t col) const {
         std::stringstream ss;
 
         std::uint16_t width = this->width(col);

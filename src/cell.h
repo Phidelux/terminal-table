@@ -34,15 +34,15 @@ namespace bornageek {
           const std::uint16_t colSpan() const;
           void colSpan(const std::uint16_t &colSpan);
 
-          const std::uint16_t width(std::uint16_t col) const;
+          const std::uint16_t width(const std::uint16_t col) const;
           const std::uint16_t height() const;
 
           const std::uint16_t maxLineWidth() const;
 
-          const std::string line(std::uint16_t idx) const;
+          const std::string line(const std::uint16_t idx) const;
           void trimLine(std::string &line) const;
 
-          const std::string render(std::uint16_t line, std::uint16_t col) const;
+          const std::string render(const std::uint16_t line, const std::uint16_t col) const;
       };
     }
   }
