@@ -1,5 +1,3 @@
-#include <string>
-
 #include "style.h"
 
 namespace bornageek {
@@ -19,123 +17,123 @@ namespace bornageek {
         mPaddingRight(s.mPaddingRight), mAlign(s.mAlign), mWidth(s.mWidth)
       {}
       
-      const std::string& Style::borderTop() const {
+      const char& Style::borderTop() const {
         return this->mBorderTop;
       }
 
-      void Style::borerTop(const std::string &borderStyle) {
+      void Style::borerTop(const char &borderStyle) {
         this->mBorderTop = borderStyle;
       }
 
-      const std::string& Style::borderTopMid() const {
+      const char& Style::borderTopMid() const {
         return this->mBorderTopMid;
       }
 
-      void Style::borderTopMid(const std::string &borderStyle) {
+      void Style::borderTopMid(const char &borderStyle) {
         this->mBorderTopMid = borderStyle;
       }
 
-      const std::string& Style::borderTopLeft() const {
+      const char& Style::borderTopLeft() const {
         return this->mBorderTopLeft;
       }
 
-      void Style::borderTopLeft(const std::string &borderStyle) {
+      void Style::borderTopLeft(const char &borderStyle) {
         this->mBorderTopLeft = borderStyle;
       }
 
-      const std::string& Style::borderTopRight() const {
+      const char& Style::borderTopRight() const {
         return this->mBorderTopRight;
       }
 
-      void Style::borderTopRight(const std::string &borderStyle) {
+      void Style::borderTopRight(const char &borderStyle) {
         this->mBorderTopRight = borderStyle;
       }
 
-      const std::string& Style::borderBottom() const {
+      const char& Style::borderBottom() const {
         return this->mBorderBottom;
       }
 
-      void Style::borderBottom(const std::string &borderStyle) {
+      void Style::borderBottom(const char &borderStyle) {
         this->mBorderBottom = borderStyle;
       }
 
-      const std::string& Style::borderBottomMid() const {
+      const char& Style::borderBottomMid() const {
         return this->mBorderBottomMid;
       }
 
-      void Style::borderBottomMid(const std::string &borderStyle) {
+      void Style::borderBottomMid(const char &borderStyle) {
         this->mBorderBottomMid = borderStyle;
       }
 
-      const std::string& Style::borderBottomLeft() const {
+      const char& Style::borderBottomLeft() const {
         return this->mBorderBottomLeft;
       }
 
-      void Style::borderBottomLeft(const std::string &borderStyle) {
+      void Style::borderBottomLeft(const char &borderStyle) {
         this->mBorderBottomLeft = borderStyle;
       }
 
-      const std::string& Style::borderBottomRight() const {
+      const char& Style::borderBottomRight() const {
         return this->mBorderBottomRight;
       }
 
-      void Style::borderBottomRight(const std::string &borderStyle) {
+      void Style::borderBottomRight(const char &borderStyle) {
         this->mBorderBottomRight = borderStyle;
       }
 
-      const std::string& Style::borderLeft() const {
+      const char& Style::borderLeft() const {
         return this->mBorderLeft;
       }
 
-      void Style::borderLeft(const std::string &borderStyle) {
+      void Style::borderLeft(const char &borderStyle) {
         this->mBorderLeft = borderStyle;
       }
 
-      const std::string& Style::borderLeftMid() const {
+      const char& Style::borderLeftMid() const {
         return this->mBorderLeftMid;
       }
 
-      void Style::borderLeftMid(const std::string &borderStyle) {
+      void Style::borderLeftMid(const char &borderStyle) {
         this->mBorderLeftMid = borderStyle;
       }
 
-      const std::string& Style::borderMid() const {
+      const char& Style::borderMid() const {
         return this->mBorderMid;
       }
 
-      void Style::borderMid(const std::string &borderStyle) {
+      void Style::borderMid(const char &borderStyle) {
         this->mBorderMid = borderStyle;
       }
 
-      const std::string& Style::borderMidMid() const {
+      const char& Style::borderMidMid() const {
         return this->mBorderMidMid;
       }
 
-      void Style::borderMidMid(const std::string &borderStyle) {
+      void Style::borderMidMid(const char &borderStyle) {
         this->mBorderMidMid = borderStyle;
       }
 
-      const std::string& Style::borderRight() const {
+      const char& Style::borderRight() const {
         return this->mBorderRight;
       }
 
-      void Style::borderRight(const std::string &borderStyle) {
+      void Style::borderRight(const char &borderStyle) {
         this->mBorderRight = borderStyle;
       }
 
-      const std::string& Style::borderRightMid() const {
+      const char& Style::borderRightMid() const {
         return this->mBorderRightMid;
       }
 
-      void Style::borderRightMid(const std::string &borderStyle) {
+      void Style::borderRightMid(const char &borderStyle) {
         this->mBorderRightMid = borderStyle;
       }
 
-      const std::string& Style::borderMiddle() const {
+      const char& Style::borderMiddle() const {
         return this->mBorderMiddle;
       }
 
-      void Style::borderMiddle(const std::string &borderStyle) {
+      void Style::borderMiddle(const char &borderStyle) {
         this->mBorderMiddle = borderStyle;
       }
 

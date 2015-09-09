@@ -49,7 +49,8 @@ namespace bornageek {
 
           const std::vector<Row> rowsWithHeadings() const;
 
-          const std::string renderSeparator(std::string left, std::string mid, std::string right, std::string sep) const;
+          const std::string renderSeparator(
+              char left, char mid, char right, char sep) const;
           const std::string render() const;
       };
 

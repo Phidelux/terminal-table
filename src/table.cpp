@@ -26,10 +26,7 @@ namespace bornageek {
       }
 
       const std::uint16_t Table::cellSpacing() const {
-        std::uint16_t sepLen = 0;
-        const char *s = this->mStyle.borderMiddle().c_str();         
-        while(*s) { sepLen += (*s++ & 0xc0) != 0x80; }
-        return this->cellPadding() + sepLen;
+        return this->cellPadding() + 1;
       }
 
       const std::uint16_t Table::cellPadding() const {
@@ -121,8 +118,8 @@ namespace bornageek {
         return this->rows();
       }
 
-      const std::string Table::renderSeparator(std::string left, 
-            std::string mid, std::string right, std::string sep) const {
+      const std::string Table::renderSeparator(
+                      char left, char mid, char right, char sep) const {
         std::stringstream ss;
 
         ss << left;
