@@ -24,7 +24,9 @@ For usage examples have a look at [test.cpp](./src/test.cpp).
 - [ ] Proper rendering of bottom separator.
 - [ ] Improve header separation.
 - [ ] Allow column span of empty cells.
-- [ ] Implement error handling.
+- [ ] Implement error handling (exceptions).
+  - [x] Implemented in table.cpp
+- [ ] Improve numColumns, maybe by caching the result.
 
 ## License
 
