@@ -57,6 +57,12 @@ class TableTest {
       table.row(2).cell(0).colSpan(4);
       table.row(7).cell(0).colSpan(3);
 
+      try {
+        table.alignColumn(5, termtab::Alignment::RIGHT);
+      } catch (const std::exception &e) {
+        std::cerr << e.what() << std::endl;
+      }
+
       std::cout << table;
     }
 };

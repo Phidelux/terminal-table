@@ -43,7 +43,7 @@ namespace bornageek {
           const Row headings() const;
           void headings(const std::vector<std::string> &headings);
 
-          Row& row(const std::uint16_t idx);
+          Row& row(const std::uint16_t n);
           const std::vector<Row> rows() const;
           void rows(const std::vector<std::vector<std::string>> &rows);
 

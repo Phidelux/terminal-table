@@ -2,6 +2,7 @@
 
 #include <iomanip>
 #include <sstream>
+#include <stdexcept>
 #include <algorithm>
 #include <functional>
 
@@ -18,6 +19,11 @@ namespace bornageek {
       }
 
       void Table::alignColumn(const std::uint16_t n, const Alignment &align) {
+        if(n > this->numColumns()) {
+          throw std::out_of_range("The table just has " 
+                + std::to_string(this->numColumns()) + " columns.");
+        }
+
         std::for_each(this->mRows.begin(), this->mRows.end(), 
           [n, align](Row &row){ 
             if(row.numCells() > n) {
@@ -39,6 +45,11 @@ namespace bornageek {
       }
 
       const std::vector<Cell> Table::column(const std::uint16_t n) const {
+        if(n > this->numColumns()) {
+          throw std::out_of_range("The table just has " 
+                + std::to_string(this->numColumns()) + " columns.");
+        }
+
         std::vector<Cell> column(this->mRows.size());
 
         std::transform(this->mRows.begin(), this->mRows.end(), column.begin(),
@@ -48,6 +59,11 @@ namespace bornageek {
       }
 
       const std::uint16_t Table::columnWidth(const std::uint16_t n) const {
+        if(n > this->numColumns()) {
+          throw std::out_of_range("The table just has " 
+                + std::to_string(this->numColumns()) + " columns.");
+        }
+
         std::uint16_t max = 0;
 
         std::vector<Row> rows = this->rowsWithHeadings();
@@ -98,8 +114,13 @@ namespace bornageek {
         this->mHeadings = Row(this, headings);
       }
 
-      Row& Table::row(const std::uint16_t idx) {
-        return this->mRows[idx];
+      Row& Table::row(const std::uint16_t n) {
+        if(n >= this->mRows.size()) {
+          throw std::out_of_range("The table just has " 
+                + std::to_string(this->mRows.size()) + " rows.");
+        }
+
+        return this->mRows[n];
       }
 
       const std::vector<Row> Table::rows() const {
