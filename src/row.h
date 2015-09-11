@@ -28,7 +28,7 @@ namespace bornageek {
 
           const std::uint16_t numCells() const;
           const std::uint16_t cellWidth(const std::uint16_t idx) const;
-          void cellColSpan(const std::uint16_t idx, std::uint16_t span);
+          void cellColSpan(const std::uint16_t idx, const std::uint16_t span);
 
           void cell(const std::string &value);
           Cell& cell(const std::uint16_t idx);

@@ -98,7 +98,7 @@ namespace bornageek {
         this->mHeadings = Row(this, headings);
       }
 
-      Row& Table::row(std::uint16_t idx) {
+      Row& Table::row(const std::uint16_t idx) {
         return this->mRows[idx];
       }
 
@@ -124,7 +124,8 @@ namespace bornageek {
       }
 
       const std::string Table::renderSeparator(
-                      char left, char mid, char right, char sep) const {
+            const char left, const char mid, 
+            const char right, const char sep) const {
         std::stringstream ss;
 
         ss << left;

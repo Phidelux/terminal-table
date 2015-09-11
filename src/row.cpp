@@ -38,7 +38,7 @@ namespace bornageek {
         return this->mCells.size();
       }
 
-      const std::uint16_t Row::cellWidth(std::uint16_t idx) const {
+      const std::uint16_t Row::cellWidth(const std::uint16_t idx) const {
         if(idx < this->numCells()) {
           return this->mCells[idx].maxLineWidth();
         }
@@ -46,7 +46,7 @@ namespace bornageek {
         return 0;
       }
 
-      void Row::cellColSpan(const std::uint16_t idx, std::uint16_t span) {
+      void Row::cellColSpan(const std::uint16_t idx, const std::uint16_t span) {
         if(span > 0 && idx < this->numCells()) {
           this->mCells[idx].colSpan(span);
         }
